@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.matilda.autodoorctrl_android">
+          package="com.example.autodoorctrl.autodoorctrlandroid">
 
     <application
             android:allowBackup="true"

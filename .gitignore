@@ -1,11 +1,24 @@
+# android studio files
 *.iml
 .gradle
-/local.properties
-/.idea/caches/build_file_checksums.ser
+.externalNativeBuild
+
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
-.DS_Store
+/.idea/caches/build_file_checksums.ser
+
 /build
 /captures
 .externalNativeBuild
+/.idea/caches/build_file_checksums.ser
+
+
+#local config files
+/local.properties
+
+# OSX files
+.DS_Store
+
+# java class files
+*.class

@@ -1,4 +1,4 @@
-package com.example.matilda.autodoorctrl_android
+package com.example.autodoorctrl.autodoorctrlandroid
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main)
     }
 }

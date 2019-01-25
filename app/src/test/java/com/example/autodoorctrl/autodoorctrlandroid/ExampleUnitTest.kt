@@ -1,4 +1,4 @@
-package com.example.matilda.autodoorctrl_android
+package com.example.autodoorctrl.autodoorctrlandroid
 
 import org.junit.Test
 
