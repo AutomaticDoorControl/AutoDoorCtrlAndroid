@@ -2,6 +2,7 @@
 *.iml
 .gradle
 .externalNativeBuild
+.gradle/
 
 /.idea/libraries
 /.idea/modules.xml
@@ -17,8 +18,14 @@
 #local config files
 /local.properties
 
-# OSX files
+#OSX files
 .DS_Store
 
-# java class files
+#java class files
 *.class
+
+#generated files
+# Generated files
+bin/
+gen/
+out/
