@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="241dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp">
+
+        <TextView
+            android:id="@+id/doorcontrol"
+            android:layout_width="336dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginRight="27dp"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:text="Door Control"
+            android:textAllCaps="true"
+            android:textColor="@color/autored"
+            android:textSize="40sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="85dp" />
+
+        <TextView
+            android:id="@+id/automatic"
+            android:layout_width="337dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="41dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="33dp"
+            android:layout_marginRight="33dp"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:letterSpacing="-0.05"
+            android:text="Automatic"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="54sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="27dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/login_buttons"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="63dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/student_login"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/login_buttons"
+            android:layout_alignTop="@+id/login_buttons"
+            android:layout_centerInParent="true"
+            android:background="@drawable/studentbutton"
+            android:clickable="true"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:padding="12dp"
+            android:text="Student Login"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="26sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/login_buttons"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/admin_login"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/admin_login"
+            android:layout_alignTop="@+id/admin_login"
+            android:background="@drawable/studentbutton"
+            android:clickable="true"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:padding="12dp"
+            android:text="Admin Login"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="26sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="280dp"
+        android:layout_height="170dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="69dp"
+        app:srcCompat="@drawable/adclogored" />
+</RelativeLayout>
