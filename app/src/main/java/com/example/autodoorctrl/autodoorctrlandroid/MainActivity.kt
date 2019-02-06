@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ProgressBar
 
-
 class MainActivity : AppCompatActivity() {
     /** Duration of splash wait until brought to Login  */
     private val DURATION: Long = 1000
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         val progressBar: ProgressBar = findViewById(R.id.splash_progress)
 //        overridePendingTransition(R.anim.splashenter, R.anim.splashexit)
 
-
         Thread(Runnable {
             while(currProgress < 100) {
                 currProgress += 1
@@ -36,10 +34,7 @@ class MainActivity : AppCompatActivity() {
                 sendToLogin()
             }
 
-
-
         }).start()
-
 
     }
 
