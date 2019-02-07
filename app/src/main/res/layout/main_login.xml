@@ -18,6 +18,23 @@
             app:srcCompat="@drawable/adclogored"/>
 
 
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="419dp"
+            android:layout_gravity="center_horizontal|center_vertical">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="340dp"
+                android:layout_height="match_parent"
+                />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
 </RelativeLayout>

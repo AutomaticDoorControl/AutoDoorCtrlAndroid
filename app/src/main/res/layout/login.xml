@@ -46,7 +46,7 @@
             android:textSize="40sp"/>
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <RelativeLayout
@@ -54,7 +54,10 @@
                 android:layout_height="fill_parent"
                 tools:layout_editor_absoluteY="461dp"
                 tools:layout_editor_absoluteX="45dp"
-                android:gravity="center_horizontal|center_vertical">
+                android:gravity="center_horizontal|center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
 
             <Button
                     android:id="@+id/student_login"
@@ -97,7 +100,7 @@
         </RelativeLayout>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>
