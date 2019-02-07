@@ -16,10 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-<<<<<<< HEAD
         setContentView(R.layout.splash_screen)
-=======
-        setContentView(R.layout.splash)
         hideNavBar()
 
         val progressBar: ProgressBar = findViewById(R.id.splash_progress)
@@ -52,6 +49,5 @@ class MainActivity : AppCompatActivity() {
     private fun sendToLogin() {
         val loginIntent = Intent(this, Login::class.java)
         startActivity(loginIntent)
->>>>>>> signupui
     }
 }
