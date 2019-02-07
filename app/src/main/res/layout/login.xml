@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/material_dark">
+
+    <ImageView
+            android:id="@+id/adclogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="-75dp"
+            android:gravity="center_horizontal"
+            app:srcCompat="@drawable/adclogored"/>
+
+    <TextView
+            android:id="@+id/automatic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_alignStart="@id/doorcontrol"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="287dp"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:letterSpacing="-0.05"
+            android:text="Automatic"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="54sp"/>
+
+    <TextView
+            android:id="@+id/doorcontrol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="349dp"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:text="Door Control"
+            android:textAllCaps="true"
+            android:textColor="@color/autored"
+            android:textSize="40sp"/>
+
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                tools:layout_editor_absoluteY="461dp"
+                tools:layout_editor_absoluteX="45dp"
+                android:gravity="center_horizontal|center_vertical">
+
+            <Button
+                    android:id="@+id/student_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="67dp"
+                    android:paddingRight="67dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:background="@drawable/studentbutton"
+                    android:clickable="true"
+                    android:fontFamily="@font/airbnbcerealbold"
+                    android:text="Student Login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:layout_marginTop="428dp"
+                    android:layout_alignParentTop="true"
+            />
+
+            <Button
+                    android:id="@+id/admin_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="75dp"
+                    android:paddingRight="75dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:background="@drawable/studentbutton"
+                    android:clickable="true"
+                    android:fontFamily="@font/airbnbcerealbold"
+                    android:text="Admin Login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"
+                    android:layout_marginTop="500dp"
+                    android:layout_alignParentTop="true"/>
+        </RelativeLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</RelativeLayout>
