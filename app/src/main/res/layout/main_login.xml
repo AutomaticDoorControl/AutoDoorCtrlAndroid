@@ -13,24 +13,63 @@
             android:scaleX="0.8"
             android:scaleY="0.8"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="-75dp"
+            android:layout_marginTop="-25dp"
             android:gravity="center_horizontal"
             app:srcCompat="@drawable/adclogored"/>
 
     <com.google.android.material.textfield.TextInputLayout
             style="@style/Login"
-            android:layout_width="340dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:hint="@string/username"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="340dp"
-            app:boxStrokeColor="@color/white">
+            android:layout_marginTop="380dp"
+            android:layout_centerInParent="true">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Login"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="450dp"
+            app:boxStrokeColor="@color/white"
+            android:layout_centerInParent="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            android:id="@+id/main_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="67dp"
+            android:paddingRight="67dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@drawable/studentbutton"
+            android:clickable="true"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:text="Student Login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:layout_marginTop="600dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+    />
+
+
 
 
 

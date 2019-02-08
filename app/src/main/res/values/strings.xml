@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AutoDoorCtrlAndroid</string>
-    <string name="username">RCSID</string>
+    <string name="username">RCS ID</string>
+    <string name="password">Password</string>
 </resources>

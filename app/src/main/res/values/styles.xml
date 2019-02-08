@@ -16,9 +16,9 @@
         <item name="boxStrokeColor">@color/white</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxBackgroundColor">@color/white</item>
-        <item name="boxCornerRadiusTopStart">25dp</item>
-        <item name="boxCornerRadiusTopEnd">25dp</item>
-        <item name="boxCornerRadiusBottomEnd">26dp</item>
-        <item name="boxCornerRadiusBottomStart">25dp</item>
+        <item name="boxCornerRadiusTopStart">20dp</item>
+        <item name="boxCornerRadiusTopEnd">20dp</item>
+        <item name="boxCornerRadiusBottomEnd">20dp</item>
+        <item name="boxCornerRadiusBottomStart">20dp</item>
     </style>
 </resources>
