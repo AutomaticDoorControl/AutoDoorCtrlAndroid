@@ -9,17 +9,15 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 
 class  Login : AppCompatActivity() {
-    private val adminBtn:Button = findViewById(R.id.admin_login)
-    private val studentBtn:Button = findViewById(R.id.student_login)
-    private val btnClick:AlphaAnimation
-
-    init {
-        btnClick = AlphaAnimation(1f, 0.8f)
-    }
+    private val btnClick:AlphaAnimation = AlphaAnimation(1f, 0.6f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
+
+        val adminBtn = findViewById<Button>(R.id.admin_login)
+        val studentBtn = findViewById<Button>(R.id.student_login)
+
 
         hideNavBar()
         adminBtn.setOnClickListener {
