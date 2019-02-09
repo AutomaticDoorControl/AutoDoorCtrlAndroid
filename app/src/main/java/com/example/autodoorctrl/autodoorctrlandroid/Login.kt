@@ -48,7 +48,7 @@ class  Login : AppCompatActivity() {
             val interpolator = BouncingInterpolator(0.2, 20.toDouble())
             animScale.interpolator = interpolator
             it.startAnimation(animScale)
-            sendToLogin()
+            sendToLogin(
         }
     }
 
