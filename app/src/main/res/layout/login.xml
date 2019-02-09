@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/material_dark">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/material_dark">
 
     <ImageView
             android:id="@+id/adclogo"
@@ -95,7 +95,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="26sp"
-                    android:layout_marginTop="500dp"
+                    android:layout_marginTop="498dp"
                     android:layout_alignParentTop="true"/>
         </RelativeLayout>
 

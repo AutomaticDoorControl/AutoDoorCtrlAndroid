@@ -2,31 +2,18 @@ package com.example.autodoorctrl.autodoorctrlandroid
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.BounceInterpolator
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.animation.AnimationUtils
 
-internal class BouncingInterpolator(amplitude: Double, frequency: Double) : android.view.animation.Interpolator {
-    private var mAmplitude = 1.0
-    private var mFrequency = 10.0
-
-    init {
-        mAmplitude = amplitude
-        mFrequency = frequency
-    }
-
-    override fun getInterpolation(time: Float): Float {
-        return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
-                Math.cos(mFrequency * time) + 1).toFloat()
-    }
-}
-
 class  Login : AppCompatActivity() {
-    private val btnClick:AlphaAnimation = AlphaAnimation(1f, 0.6f)
+    private val opacityClick:AlphaAnimation = AlphaAnimation(0.8f, 0.4f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,22 +21,21 @@ class  Login : AppCompatActivity() {
 
         val adminBtn = findViewById<Button>(R.id.admin_login)
         val studentBtn = findViewById<Button>(R.id.student_login)
+        val settingsIcon = findViewById<ImageView>(R.id.gear)
         val animScale = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.scale_anim)
 
 
         hideNavBar()
         adminBtn.setOnClickListener {
-            val interpolator = BouncingInterpolator(0.2, 20.toDouble())
-            animScale.interpolator = interpolator
             it.startAnimation(animScale)
-            sendToLogin()
+            Handler().postDelayed({ sendToLogin() }, 150)
         }
         studentBtn.setOnClickListener {
-            val interpolator = BouncingInterpolator(0.2, 20.toDouble())
-            animScale.interpolator = interpolator
             it.startAnimation(animScale)
-            sendToLogin()
+            Handler().postDelayed({ sendToLogin() }, 150)
         }
+
+        settingsIcon.setOnClickListener { it.startAnimation(opacityClick) }
     }
 
     private fun hideNavBar() {
