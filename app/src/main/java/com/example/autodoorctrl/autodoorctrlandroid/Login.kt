@@ -22,17 +22,15 @@ class  Login : AppCompatActivity() {
         val adminBtn = findViewById<Button>(R.id.admin_login)
         val studentBtn = findViewById<Button>(R.id.student_login)
         val settingsIcon = findViewById<ImageView>(R.id.gear)
-        val animScale = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.scale_anim)
-
 
         hideNavBar()
         adminBtn.setOnClickListener {
-            it.startAnimation(animScale)
-            Handler().postDelayed({ sendToLogin() }, 150)
+//            it.startAnimation(animScale)
+            Handler().postDelayed({ sendToLogin() }, 100)
         }
         studentBtn.setOnClickListener {
-            it.startAnimation(animScale)
-            Handler().postDelayed({ sendToLogin() }, 150)
+//            it.startAnimation(animScale)
+            Handler().postDelayed({ sendToLogin() }, 100)
         }
 
         settingsIcon.setOnClickListener { it.startAnimation(opacityClick) }

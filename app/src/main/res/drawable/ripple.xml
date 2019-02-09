@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-        android:color="@color/material_dark">
+<ripple
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="#16FFFFFF"> <!-- Ripple color :: WHITE -->
+
+    <!-- Make sure the ripple doesn't exceed the bounds -->
     <item android:id="@android:id/mask">
-        <shape android:shape="oval">
+        <shape android:shape="rectangle">
             <solid android:color="?android:colorAccent" />
+            <corners android:radius="25dp" />
         </shape>
     </item>
 </ripple>

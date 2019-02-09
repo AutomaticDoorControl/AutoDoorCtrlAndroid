@@ -6,5 +6,9 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="gear_description">Access settings panel</string>
+    <string name="version">ADC v.1</string>
+    <string name="door_control">Door Control</string>
+    <string name="automatic">Automatic</string>
+    <string name="logo">Automatic Door Contorl logo</string>
 
 </resources>
