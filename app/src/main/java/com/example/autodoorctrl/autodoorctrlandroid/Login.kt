@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 
-class Login : AppCompatActivity() {
+class  Login : AppCompatActivity() {
     private var username: EditText? = null
     private var password: EditText? = null
     private var pass: String? = null

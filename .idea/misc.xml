@@ -11,7 +11,10 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+<<<<<<< HEAD
   <component name="TerminalProjectOptionsProvider">
     <option name="myStartingDirectory" value="$USER_HOME$/Desktop/menu/MenuUI/app" />
   </component>
+=======
+>>>>>>> origin/master
 </project>

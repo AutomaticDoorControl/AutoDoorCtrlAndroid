@@ -102,5 +102,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/gear"
+            android:id="@+id/gear"
+            android:layout_marginTop="16dp" android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/gear_description"/>
+
 
 </RelativeLayout>

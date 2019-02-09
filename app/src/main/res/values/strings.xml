@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">AutoDoorCtrlAndroid</string>
+    <string name="a_login">Admin Login</string>
+    <string name="s_login">Student Login</string>
     <string name="username">RCS ID</string>
     <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="gear_description">Access settings panel</string>
+
 </resources>
