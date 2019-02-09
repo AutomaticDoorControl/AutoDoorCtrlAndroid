@@ -3,20 +3,18 @@ package com.example.autodoorctrl.autodoorctrlandroid
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AlphaAnimation
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 
 class  Login : AppCompatActivity() {
-    private var username: EditText? = null
-    private var password: EditText? = null
-    private var pass: String? = null
-    private val adminbtn:Button
-    private val studentbtn:Button
+    private val adminBtn:Button = findViewById(R.id.admin_login)
+    private val studentBtn:Button = findViewById(R.id.student_login)
+    private val btnClick:AlphaAnimation
 
     init {
-        adminbtn = findViewById<Button>(R.id.admin_login)
-        studentbtn = findViewById<Button>(R.id.student_login )
+        btnClick = AlphaAnimation(1f, 0.8f)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +22,14 @@ class  Login : AppCompatActivity() {
         setContentView(R.layout.login)
 
         hideNavBar()
-        adminbtn.setOnClickListener { sendToLogin() }
-        studentbtn.setOnClickListener { sendToLogin() }
+        adminBtn.setOnClickListener {
+            it.startAnimation(btnClick)
+            sendToLogin()
+        }
+        studentBtn.setOnClickListener {
+            it.startAnimation(btnClick)
+            sendToLogin()
+        }
     }
 
     private fun hideNavBar() {
