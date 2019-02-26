@@ -17,6 +17,8 @@ import android.Manifest.permission.USE_BIOMETRIC
 import androidx.core.app.ActivityCompat
 import android.app.KeyguardManager
 import android.content.Context
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat
+import java.security.AccessController.getContext
 
 
 class MainLogin : AppCompatActivity() {
@@ -51,6 +53,22 @@ class MainLogin : AppCompatActivity() {
         val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
 
         val packageManager = this.packageManager
+        val fingerprintManager = FingerprintManagerCompat.from(this)
+
+        if(!fingerprintManager.isHardwareDetected){
+            notifyUser("Device does not have fingerprint hardware")
+            return false
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            notifyUser("SDK version does not support fingerprint authentication")
+            return false
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            notifyUser("SDK version does not support biometric prompts")
+            return false
+        }
 
         if (!keyguardManager.isKeyguardSecure) {
             notifyUser("Lock screen security not enabled in Settings")
