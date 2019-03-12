@@ -70,8 +70,15 @@ class MainLogin : AppCompatActivity() {
             return false
         }
 
+
+
         if (!keyguardManager.isKeyguardSecure) {
             notifyUser("Lock screen security not enabled in Settings")
+            return false
+        }
+
+        if(!fingerprintManager.hasEnrolledFingerprints()){
+            notifyUser("No fingerprints registered with device")
             return false
         }
 
