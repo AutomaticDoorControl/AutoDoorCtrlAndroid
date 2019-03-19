@@ -12,25 +12,38 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import android.content.pm.PackageManager
-import android.Manifest.permission
-import android.Manifest.permission.USE_BIOMETRIC
+
 import androidx.core.app.ActivityCompat
 import android.app.KeyguardManager
 import android.content.Context
+import android.content.Intent
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat
-import java.security.AccessController.getContext
+import android.os.CancellationSignal;
+
+
+
+
+
+
+
 
 
 class MainLogin : AppCompatActivity() {
     private val opacityClick: AlphaAnimation = AlphaAnimation(0.8f, 0.4f)
+    private val cancellationSignal: CancellationSignal = CancellationSignal()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_login)
         hideNavBar()
-        checkBiometricSupport()
+
         val settingsIcon = findViewById<ImageView>(R.id.gear)
         settingsIcon.setOnClickListener { it.startAnimation(opacityClick) }
+        val boolean : Boolean = checkBiometricSupport()
+        if (boolean){
+            authenticateUser()
+        }
     }
 
     private fun hideNavBar() {
@@ -98,19 +111,58 @@ class MainLogin : AppCompatActivity() {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.P)
+    private fun getAuthenticationCallback(): BiometricPrompt.AuthenticationCallback {
 
-/*    @TargetApi(Build.VERSION_CODES.P)
-    private fun displayBiometricPrompt(biometricCallback:BiometricCallback) {
-        BiometricPrompt.Builder(context)
-            .setTitle(title)
-            .setSubtitle(subtitle)
-            .setDescription(description)
-            .setNegativeButton(negativeButtonText, context.getMainExecutor(), object: DialogInterface.OnClickListener() {
-                fun onClick(dialogInterface:DialogInterface, i:Int) {
-                    biometricCallback.onAuthenticationCancelled()
-                }
-            })
-            .build()
+        return object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationError(
+                errorCode: Int,
+                errString: CharSequence
+            ) {
+                notifyUser("Authentication error: $errString")
+                super.onAuthenticationError(errorCode, errString)
+            }
+
+            override fun onAuthenticationHelp(
+                helpCode: Int,
+                helpString: CharSequence
+            ) {
+                super.onAuthenticationHelp(helpCode, helpString)
+            }
+
+            override fun onAuthenticationFailed() {
+                super.onAuthenticationFailed()
+            }
+
+            override fun onAuthenticationSucceeded(
+                result: BiometricPrompt.AuthenticationResult
+            ) {
+                notifyUser("Authentication Succeeded")
+                super.onAuthenticationSucceeded(result)
+                val intent = Intent(this@MainLogin , MapActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
-*/
+
+    private fun getCancellationSignal(): CancellationSignal {
+
+        cancellationSignal.setOnCancelListener(CancellationSignal.OnCancelListener { notifyUser("Cancelled via signal") })
+        return cancellationSignal
+    }
+    @TargetApi(Build.VERSION_CODES.P)
+    private fun authenticateUser() {
+        val biometricPrompt = BiometricPrompt.Builder(this)
+            .setTitle("Biometric Demo")
+            .setSubtitle("Authentication is required to continue")
+            .setDescription("This app uses biometric authentication to protect your data.")
+            .setNegativeButton("Cancel", this.mainExecutor,
+                DialogInterface.OnClickListener { dialogInterface, i -> notifyUser("Authentication cancelled") })
+            .build()
+
+        biometricPrompt.authenticate(getCancellationSignal(), getMainExecutor(),
+            getAuthenticationCallback());
+    }
+
+
 }

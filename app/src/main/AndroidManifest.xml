@@ -27,6 +27,8 @@
         <activity android:name=".MainLogin"/>
 
         <activity android:name=".Login"/>
+
+        <activity android:name=".MapActivity"/>
     </application>
 
 </manifest>
