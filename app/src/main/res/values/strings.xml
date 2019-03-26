@@ -10,5 +10,6 @@
     <string name="door_control">Door Control</string>
     <string name="automatic">Automatic</string>
     <string name="logo">Automatic Door Contorl logo</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

@@ -139,7 +139,7 @@ class MainLogin : AppCompatActivity() {
             ) {
                 notifyUser("Authentication Succeeded")
                 super.onAuthenticationSucceeded(result)
-                val intent = Intent(this@MainLogin , MapActivity::class.java)
+                val intent = Intent(this@MainLogin , MapsActivity::class.java)
                 startActivity(intent)
             }
         }
