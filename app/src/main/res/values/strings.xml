@@ -10,5 +10,10 @@
     <string name="door_control">Door Control</string>
     <string name="automatic">Automatic</string>
     <string name="logo">Automatic Door Contorl logo</string>
+    <string name="settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="name">Name</string>
+    <string name="email">RPI Email</string>
+
 
 </resources>

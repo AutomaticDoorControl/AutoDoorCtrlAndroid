@@ -42,7 +42,7 @@
             android:fontFamily="@font/airbnbcerealbold"
             android:text="@string/door_control"
             android:textAllCaps="true"
-            android:textColor="@color/autored"
+            android:textColor="@color/autoRed"
             android:textSize="40sp"/>
 
 
@@ -100,9 +100,9 @@
             android:textSize="24sp"
             android:textColor="@color/white"
             android:fontFamily="@font/airbnbcereallight"
-            android:layout_marginTop="610dp"
+            android:layout_marginTop="4dp"
             android:gravity="center_horizontal|center_vertical"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true" android:layout_below="@+id/admin_login"/>
 
     <ImageView
             android:layout_width="30dp"

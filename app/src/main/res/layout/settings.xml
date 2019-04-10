@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lightGray">
+
+    <TextView
+            android:text="@string/settings"
+            android:textColor="@color/white"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:textSize="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_header"
+            android:background="@drawable/settings_header"/>
+    <Switch
+            android:text="Active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch1"
+            android:layout_marginTop="185dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="240dp"
+            android:layout_marginLeft="8dp"
+            android:paddingRight="6sp"
+            android:switchPadding="16dp"
+            android:checked="true"
+            android:textSize="32sp"
+            android:textColor="@color/gray"
+            android:paddingBottom="4sp"
+            android:fontFamily="@font/airbnbcerealbold" android:textColorLink="@color/material_dark"/>
+    <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp" app:srcCompat="@drawable/ic_person_black_24dp"
+            android:id="@+id/imageView5" android:layout_marginTop="1dp" android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" android:layout_marginStart="350dp"/>
+    <TextView
+            android:text="rcsid"
+            android:layout_width="53dp"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:textColor="@color/lightGray"
+            android:textSize="20sp"
+            android:layout_height="wrap_content" android:id="@+id/user_id" android:layout_alignParentStart="true"
+            android:layout_marginStart="349dp" android:layout_marginTop="42dp" android:layout_alignParentTop="true"/>
+    <!--<TextView-->
+            <!--android:text="Back"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:fontFamily="@font/airbnbcerealbold"-->
+            <!--android:textSize="26sp"-->
+            <!--android:letterSpacing="1sp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/textView2"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_marginStart="51dp"/>-->
+</RelativeLayout>

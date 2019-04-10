@@ -5,6 +5,9 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+
+
 
 class MainLogin : AppCompatActivity() {
     private val opacityClick: AlphaAnimation = AlphaAnimation(0.8f, 0.4f)
@@ -15,7 +18,10 @@ class MainLogin : AppCompatActivity() {
         hideNavBar()
 
         val settingsIcon = findViewById<ImageView>(R.id.gear)
-        settingsIcon.setOnClickListener { it.startAnimation(opacityClick) }
+        settingsIcon.setOnClickListener {
+            it.startAnimation(opacityClick)
+            goToSettings()
+        }
     }
 
     private fun hideNavBar() {
@@ -24,4 +30,12 @@ class MainLogin : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
+
+    fun goToSettings() {
+        val intent = Intent(this@MainLogin, Settings::class.java)
+        startActivity(intent)
+    }
+
 }
+
+

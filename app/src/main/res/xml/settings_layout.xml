@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+            android:layout="@layout/settings"
+            android:defaultValue="true"
+            android:key="test"
+            android:title="Settings Header"/>
+    <Preference
+            android:key="contact_fixx"
+            android:title="Contact Fixx"
+            android:summary="Contact Fixx about issues with a door"
+            android:layout="@layout/settings_layout" />
+    <Preference
+            android:key="feedback"
+            android:title="Send feedback"
+            android:summary="Report technical issues or suggest new features"
+            android:layout="@layout/settings_layout"/>
+            <!--android:marginTop="90sp"/>-->
+
+</PreferenceScreen>
