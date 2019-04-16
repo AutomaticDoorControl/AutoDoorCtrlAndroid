@@ -19,13 +19,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat
 import android.os.CancellationSignal;
-
-
-
-
-
-
-
+import android.util.Log
 
 
 class MainLogin : AppCompatActivity() {
@@ -80,6 +74,8 @@ class MainLogin : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             notifyUser("SDK version does not support biometric prompts")
+            print(Build.VERSION.SDK_INT)
+            print(Build.VERSION_CODES.P)
             return false
         }
 
@@ -153,9 +149,9 @@ class MainLogin : AppCompatActivity() {
     @TargetApi(Build.VERSION_CODES.P)
     private fun authenticateUser() {
         val biometricPrompt = BiometricPrompt.Builder(this)
-            .setTitle("Biometric Demo")
+            .setTitle("Biometric Lofin")
             .setSubtitle("Authentication is required to continue")
-            .setDescription("This app uses biometric authentication to protect your data.")
+            .setDescription("Use Fingerprint to login to Automatic Door Control.")
             .setNegativeButton("Cancel", this.mainExecutor,
                 DialogInterface.OnClickListener { dialogInterface, i -> notifyUser("Authentication cancelled") })
             .build()

@@ -1,6 +1,7 @@
 package com.example.autodoorctrl.autodoorctrlandroid
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -66,6 +67,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     override fun onInfoWindowClick(p0: Marker?) {
         Toast.makeText(this, "Info window clicked",
             Toast.LENGTH_SHORT).show();
+        val intent = Intent(this@MapsActivity , UnlockActivity::class.java)
+        startActivity(intent)
     }
     fun checkLocation() {
         val permission = ContextCompat.checkSelfPermission(this,
