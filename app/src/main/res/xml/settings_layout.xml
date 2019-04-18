@@ -5,10 +5,11 @@
             android:key="test"
             android:title="Settings Header"/>
     <Preference
+            android:id="@+id/fixx"
             android:key="contact_fixx"
             android:title="Contact Fixx"
             android:summary="Contact Fixx about issues with a door"
-            android:layout="@layout/settings_layout" />
+            android:layout="@layout/settings_layout" android:selectable="true" />
     <Preference
             android:key="feedback"
             android:title="Send feedback"

@@ -6,6 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import android.view.LayoutInflater
 import android.view.View
+import android.preference.Preference
+import android.preference.Preference.OnPreferenceClickListener
+import android.R
+import android.app.PendingIntent.getActivity
+import android.widget.Toast
+import android.preference.PreferenceManager
+import android.content.SharedPreferences
+import java.security.AccessController.getContext
+import android.content.Context.MODE_PRIVATE
+import android.preference.CheckBoxPreference
+
+
+
+
 
 
 class Settings : AppCompatActivity() {
@@ -25,10 +39,12 @@ class Settings : AppCompatActivity() {
     }
 
 
-    class SettingsFragment : PreferenceFragment() {
+    class SettingsFragment : PreferenceFragment()  {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.settings_layout)
+
+
         }
     }
 
