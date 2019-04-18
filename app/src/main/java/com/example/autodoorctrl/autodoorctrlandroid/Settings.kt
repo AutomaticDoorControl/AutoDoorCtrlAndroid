@@ -8,18 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.preference.Preference
 import android.preference.Preference.OnPreferenceClickListener
-import android.R
-import android.app.PendingIntent.getActivity
-import android.widget.Toast
-import android.preference.PreferenceManager
-import android.content.SharedPreferences
-import java.security.AccessController.getContext
-import android.content.Context.MODE_PRIVATE
-import android.preference.CheckBoxPreference
-
-
-
-
+import android.content.DialogInterface
+import android.content.Intent
+import android.preference.PreferenceScreen
 
 
 class Settings : AppCompatActivity() {
@@ -31,11 +22,6 @@ class Settings : AppCompatActivity() {
             fragmentManager.beginTransaction()
                 .add(android.R.id.content, SettingsFragment()).commit()
         }
-
-
-//        val inflater = LayoutInflater.from(this)
-//        inflater.inflate(R.layout.settings, null)
-
     }
 
 
@@ -43,8 +29,6 @@ class Settings : AppCompatActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.settings_layout)
-
-
         }
     }
 

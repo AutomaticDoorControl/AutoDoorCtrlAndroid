@@ -29,6 +29,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
+        <uses-library
+                android:name="org.apache.http.legacy"
+                android:required="false"/>
+
         <activity
                 android:name=".Settings"
                 android:label="@string/title_activity_settings"
@@ -43,21 +47,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainLogin">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/></intent-filter>
-
-        <uses-library
-                android:name="org.apache.http.legacy"
-                android:required="false"/>
-
+        <activity android:name=".MainLogin"/>
         <activity android:name=".Login"/>
         <activity
                 android:name=".MapsActivity"
                 android:label="@string/title_activity_maps">
         </activity>
         <activity android:name=".UnlockActivity"/>
+        <activity android:name=".ContactFixx"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
