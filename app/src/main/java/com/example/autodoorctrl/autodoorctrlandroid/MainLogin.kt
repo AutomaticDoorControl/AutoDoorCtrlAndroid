@@ -149,7 +149,7 @@ class MainLogin : AppCompatActivity() {
     @TargetApi(Build.VERSION_CODES.P)
     private fun authenticateUser() {
         val biometricPrompt = BiometricPrompt.Builder(this)
-            .setTitle("Biometric Lofin")
+            .setTitle("Biometric Login")
             .setSubtitle("Authentication is required to continue")
             .setDescription("Use Fingerprint to login to Automatic Door Control.")
             .setNegativeButton("Cancel", this.mainExecutor,
