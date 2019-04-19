@@ -33,7 +33,11 @@ class  Login : AppCompatActivity() {
             Handler().postDelayed({ sendToLogin() }, 100)
         }
 
-        settingsIcon.setOnClickListener { it.startAnimation(opacityClick) }
+        settingsIcon.setOnClickListener {
+            it.startAnimation(opacityClick)
+            goToSettings()
+
+        }
     }
 
     private fun hideNavBar() {
@@ -47,6 +51,11 @@ class  Login : AppCompatActivity() {
     private fun sendToLogin() {
         val loginIntent = Intent(this, MainLogin::class.java)
         startActivity(loginIntent)
+    }
+
+    fun goToSettings() {
+        val intent = Intent(this@Login, Settings::class.java)
+        startActivity(intent)
     }
 
 }

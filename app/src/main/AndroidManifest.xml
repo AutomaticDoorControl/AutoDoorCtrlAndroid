@@ -15,6 +15,12 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-feature
+            android:name="android.hardware.fingerprint"
+            android:required="false"/>
+
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
     <application
             android:allowBackup="true"
             android:icon="@drawable/adclogored"
@@ -27,6 +33,11 @@
                 android:name="org.apache.http.legacy"
                 android:required="false"/>
 
+        <activity
+                android:name=".Settings"
+                android:label="@string/title_activity_settings"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
                 android:name=".SplashActivity"
                 android:theme="@style/SplashTheme">
@@ -43,7 +54,8 @@
                 android:label="@string/title_activity_maps">
         </activity>
         <activity android:name=".UnlockActivity"/>
-
+        <activity android:name=".ContactFixx"/>
+        <activity android:name=".SendFeedback"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

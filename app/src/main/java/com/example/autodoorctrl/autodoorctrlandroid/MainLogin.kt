@@ -2,24 +2,25 @@ package com.example.autodoorctrl.autodoorctrlandroid
 
 import android.Manifest
 import android.annotation.TargetApi
+import android.app.KeyguardManager
+import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.biometrics.BiometricPrompt
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
-import android.content.pm.PackageManager
-
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import android.app.KeyguardManager
-import android.content.Context
-import android.content.Intent
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat
+
 import android.os.CancellationSignal;
-import android.util.Log
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat.startActivity
 
 
 class MainLogin : AppCompatActivity() {
@@ -33,113 +34,117 @@ class MainLogin : AppCompatActivity() {
         hideNavBar()
 
         val settingsIcon = findViewById<ImageView>(R.id.gear)
-        settingsIcon.setOnClickListener { it.startAnimation(opacityClick) }
+        settingsIcon.setOnClickListener {
+            it.startAnimation(opacityClick)
+            goToSettings()
+        }
         val boolean : Boolean = checkBiometricSupport()
         if (boolean){
             authenticateUser()
         }
+
+
     }
 
-    private fun hideNavBar() {
-        this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+        fun hideNavBar() {
+            this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        }
+
+    private fun goToSettings() {
+        val intent = Intent(this@MainLogin, Settings::class.java)
+        startActivity(intent)
     }
 
-    private fun notifyUser(message: String) {
-        Toast.makeText(
-            this,
-            message,
-            Toast.LENGTH_LONG
-        ).show()
-    }
-
-    private fun checkBiometricSupport(): Boolean {
-
-        val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-
-        val packageManager = this.packageManager
-        val fingerprintManager = FingerprintManagerCompat.from(this)
-
-        if(!fingerprintManager.isHardwareDetected){
-            notifyUser("Device does not have fingerprint hardware")
-            return false
-        }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            notifyUser("SDK version does not support fingerprint authentication")
-            return false
-        }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-            notifyUser("SDK version does not support biometric prompts")
-            print(Build.VERSION.SDK_INT)
-            print(Build.VERSION_CODES.P)
-            return false
-        }
-
-
-
-        if (!keyguardManager.isKeyguardSecure) {
-            notifyUser("Lock screen security not enabled in Settings")
-            return false
-        }
-
-        if(!fingerprintManager.hasEnrolledFingerprints()){
-            notifyUser("No fingerprints registered with device")
-            return false
-        }
-
-        if (ActivityCompat.checkSelfPermission(
+        fun notifyUser(message: String) {
+            Toast.makeText(
                 this,
-                Manifest.permission.USE_BIOMETRIC
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            notifyUser("Fingerprint authentication permission not enabled")
-            return false
+                message,
+                Toast.LENGTH_LONG
+            ).show()
         }
 
-        return if (packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) {
-            true
-        } else true
+        private fun checkBiometricSupport(): Boolean {
 
-    }
+            val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
 
-    @TargetApi(Build.VERSION_CODES.P)
-    private fun getAuthenticationCallback(): BiometricPrompt.AuthenticationCallback {
+            val packageManager = this.packageManager
+            val fingerprintManager = FingerprintManagerCompat.from(this)
 
-        return object : BiometricPrompt.AuthenticationCallback() {
-            override fun onAuthenticationError(
-                errorCode: Int,
-                errString: CharSequence
-            ) {
-                notifyUser("Authentication error: $errString")
-                super.onAuthenticationError(errorCode, errString)
+            if(!fingerprintManager.isHardwareDetected){
+                notifyUser("Device does not have fingerprint hardware")
+                return false
             }
 
-            override fun onAuthenticationHelp(
-                helpCode: Int,
-                helpString: CharSequence
-            ) {
-                super.onAuthenticationHelp(helpCode, helpString)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+                notifyUser("SDK version does not support fingerprint authentication")
+                return false
             }
 
-            override fun onAuthenticationFailed() {
-                super.onAuthenticationFailed()
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                notifyUser("SDK version does not support biometric prompts")
+                print(Build.VERSION.SDK_INT)
+                print(Build.VERSION_CODES.P)
+                return false
             }
 
-            override fun onAuthenticationSucceeded(
-                result: BiometricPrompt.AuthenticationResult
+
+
+            if (!keyguardManager.isKeyguardSecure) {
+                notifyUser("Lock screen security not enabled in Settings")
+                return false
+            }
+
+            if(!fingerprintManager.hasEnrolledFingerprints()){
+                notifyUser("No fingerprints registered with device")
+                return false
+            }
+
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.USE_BIOMETRIC
+                ) != PackageManager.PERMISSION_GRANTED
             ) {
-                notifyUser("Authentication Succeeded")
-                super.onAuthenticationSucceeded(result)
-                val intent = Intent(this@MainLogin , MapsActivity::class.java)
-                startActivity(intent)
+
+                notifyUser("Fingerprint authentication permission not enabled")
+                return false
+            }
+
+            return if (packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) {
+                true
+            } else true
+
+        }
+
+        @TargetApi(Build.VERSION_CODES.P)
+        fun getAuthenticationCallback(): BiometricPrompt.AuthenticationCallback {
+
+            return object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(
+                    errorCode: Int,
+                    errString: CharSequence
+                ) {
+                    notifyUser("Authentication error: $errString")
+                    super.onAuthenticationError(errorCode, errString)
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult
+                ) {
+                    notifyUser("Authentication Succeeded")
+                    super.onAuthenticationSucceeded(result)
+                    val intent = Intent(this@MainLogin , MapsActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
-    }
 
     private fun getCancellationSignal(): CancellationSignal {
 
@@ -159,6 +164,6 @@ class MainLogin : AppCompatActivity() {
         biometricPrompt.authenticate(getCancellationSignal(), getMainExecutor(),
             getAuthenticationCallback());
     }
-
-
 }
+
+
