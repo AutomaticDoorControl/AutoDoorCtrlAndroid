@@ -31,7 +31,7 @@ class SendFeedback : AppCompatActivity() {
             val rpi_email =  email.text.toString()
             val msg = msg.text.toString()
 
-            val autodoor = "ozinem@rpi.edu"
+            val autodoor = "automaticdoorcontrol@gmail.com"
             val email = Intent(Intent.ACTION_SEND)
             email.putExtra(Intent.EXTRA_EMAIL, arrayOf(autodoor))
             email.putExtra(Intent.EXTRA_SUBJECT, "Feedback for Automatic Door Control")
