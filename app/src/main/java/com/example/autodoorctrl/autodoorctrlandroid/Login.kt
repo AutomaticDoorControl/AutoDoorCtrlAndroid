@@ -50,7 +50,7 @@ class  Login : AppCompatActivity() {
         startActivity(loginIntent)
     }
 
-    fun goToSettings() {
+    private fun goToSettings() {
         val intent = Intent(this@Login, Settings::class.java)
         startActivity(intent)
     }

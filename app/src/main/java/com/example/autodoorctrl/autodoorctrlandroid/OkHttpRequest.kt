@@ -1,18 +1,16 @@
 package com.example.autodoorctrl.autodoorctrlandroid
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.Callback
 import okhttp3.Call
-import okhttp3.MediaType
 import org.json.JSONObject
-import okhttp3.RequestBody
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 
 
 
-class OkHttpRequest(var client: OkHttpClient) {
-    fun GET(url: String, callback: Callback): Call {
+class OkHttpRequest(private var client: OkHttpClient) {
+    fun get(url: String, callback: Callback): Call {
         val request = Request.Builder()
             .url(url)
             .build()
@@ -21,7 +19,7 @@ class OkHttpRequest(var client: OkHttpClient) {
         call.enqueue(callback)
         return call
     }
-    fun POST(url: String, parameters: HashMap<String, String>, callback: Callback): Call {
+    fun post(url: String, parameters: HashMap<String, String>, callback: Callback): Call {
         val parameter = JSONObject(parameters)
         val mediaTypeJson = "application/json; charset=utf-8".toMediaType()
         val requestBody = parameter.toString().toRequestBody(mediaTypeJson)

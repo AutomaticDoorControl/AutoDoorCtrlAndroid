@@ -6,14 +6,12 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Build
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.location.Location
 import android.os.Looper
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -36,19 +34,15 @@ import com.google.android.gms.location.LocationServices
 import java.io.IOException
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
-    private val UPDATE_INTERVAL = (10 * 1000).toLong()
-    private val FASTEST_INTERVAL: Long = 2000
+    private val updateInterval = (10 * 1000).toLong()
+    private val fastInterval: Long = 2000
     private var mLocationRequest: LocationRequest? = null
     private lateinit var mMap: GoogleMap
-    private val TAG = "PermissionDemo"
-    private val RECORD_REQUEST_CODE = 101
     private val  url = "http://69.55.54.25:80/api/get-doors"
     private var client = OkHttpClient()
     private var request = OkHttpRequest(client)
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var lastLocation:LatLng? = null
-    private var lat = 0.0
-    private var lng = 0.0
     private var cameraMoved = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,21 +75,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         mMap = googleMap
         mMap.setMinZoomPreference(14.0f)
         mMap.setMaxZoomPreference(18.0f)
-        mMap.setMyLocationEnabled(true)
+        mMap.isMyLocationEnabled= true
 
         //add this here:
-        var list: MutableList<LatLng> = ArrayList()
-        request.GET(url,object: Callback {
+        val list: MutableList<LatLng> = ArrayList()
+        request.get(url,object: Callback {
             override fun onResponse(call: Call, response: Response) {
                 try {
-                    var jsonArray = JSONArray(response.body?.string())
+                    val jsonArray = JSONArray(response.body?.string())
                     for (i in 0 until jsonArray.length()) {
                         val item = jsonArray.getJSONObject(i)
                         val latitude = item.getDouble("latitude")
                         val longitude = item.getDouble("longitude")
                         val name  = item.getString("name")
                         val tempDoor = LatLng(latitude,longitude)
-                        list.add(tempDoor)
+                        list+=tempDoor
                         runOnUiThread{
                             mMap.addMarker(MarkerOptions().position(tempDoor).title(name).snippet("Click to open or close"))
                         }
@@ -132,23 +126,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
 
     override fun onInfoWindowClick(p0: Marker?) {
         Toast.makeText(this, "Info window clicked",
-            Toast.LENGTH_SHORT).show();
+            Toast.LENGTH_SHORT).show()
         val intent = Intent(this@MapsActivity , UnlockActivity::class.java)
         startActivity(intent)
     }
-    private fun makeRequest() {
-        ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            RECORD_REQUEST_CODE)
-    }
-
-    protected fun startLocationUpdates() {
+    private fun startLocationUpdates() {
         // initialize location request object
         mLocationRequest = LocationRequest.create()
         mLocationRequest!!.run {
-            setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-            setInterval(UPDATE_INTERVAL)
-            setFastestInterval(FASTEST_INTERVAL)
+            priority=LocationRequest.PRIORITY_HIGH_ACCURACY
+            interval=updateInterval
+            fastestInterval=fastInterval
         }
 
         // initialize location setting request builder object
@@ -168,7 +156,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         // initialize location callback object
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult?) {
-                onLocationChanged(locationResult!!.getLastLocation())
+                onLocationChanged(locationResult!!.lastLocation)
             }
         }
         // 4. add permission if android version is greater then 23
@@ -179,21 +167,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
 
     //
     private fun onLocationChanged(location: Location) {
-        val location = LatLng(location.latitude, location.longitude)
+        val myLocation = LatLng(location.latitude, location.longitude)
         if(!cameraMoved)
         {
-            lastLocation=location
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+            lastLocation=myLocation
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
             cameraMoved=true
         }
     }
 
     private fun checkPermission() : Boolean {
-        if (ContextCompat.checkSelfPermission(this , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return true
+        return if (ContextCompat.checkSelfPermission(this , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            true
         } else {
             requestPermissions()
-            return false
+            false
         }
     }
 
@@ -204,7 +192,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == 1) {
-            if (permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION ) {
+            if (permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION) {
                 registerLocationListener()
             }
         }
