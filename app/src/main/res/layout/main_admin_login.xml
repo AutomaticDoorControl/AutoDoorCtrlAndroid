@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/material_dark">
+
+    <ImageView
+            android:id="@+id/adclogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="-25dp"
+            android:gravity="center_horizontal"
+            app:srcCompat="@drawable/adclogored"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Login"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="340dp"
+            android:layout_centerInParent="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/RCS_ID"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/airbnbcerealbold"
+                android:textSize="20sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Login"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="410dp"
+            app:boxStrokeColor="@color/white"
+            android:layout_centerInParent="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/airbnbcerealbold"
+                android:textSize="20sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+            android:id="@+id/main_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="492dp"
+            android:background="@drawable/studentbutton"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:foreground="@drawable/ripple"
+            android:paddingLeft="67dp"
+            android:paddingTop="10dp"
+            android:paddingRight="67dp"
+            android:paddingBottom="10dp"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+
+    <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/gear"
+            android:id="@+id/gear"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="25dp"
+            android:contentDescription="@string/gear_description"
+            android:alpha="0.7"/>
+
+    <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="102dp"
+            android:layout_height="70dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="158dp"
+            android:layout_marginTop="635dp"
+            app:srcCompat="@drawable/ic_fingerprint_black_24dp" />
+
+</RelativeLayout>

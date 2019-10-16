@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+            android:layout="@layout/settings"
+            android:defaultValue="true"
+            android:key="test"
+            android:title="Settings Header"/>
+
+    <Preference
+            android:key="contact_fixx"
+            android:title="Contact Fixx"
+            android:summary="Contact Fixx about issues with a door"
+            android:layout="@layout/settings_layout"
+            android:selectable="true">
+
+        <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.example.autodoorctrl.autodoorctrlandroid"
+                android:targetClass="com.example.autodoorctrl.autodoorctrlandroid.ContactFixx"
+        />
+    </Preference>
+
+    <Preference
+            android:key="feedback"
+            android:title="Send feedback"
+            android:summary="Report technical issues or suggest new features"
+            android:layout="@layout/settings_layout"
+            android:selectable="true">
+
+        <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.example.autodoorctrl.autodoorctrlandroid"
+                android:targetClass="com.example.autodoorctrl.autodoorctrlandroid.SendFeedback"
+        />
+    </Preference>
+
+</PreferenceScreen>

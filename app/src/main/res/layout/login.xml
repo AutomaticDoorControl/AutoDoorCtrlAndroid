@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/material_dark">
+
+    <ImageView
+            android:id="@+id/adclogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="-75dp"
+            android:gravity="center_horizontal"
+            app:srcCompat="@drawable/adclogored"
+            android:contentDescription="@string/logo"/>
+
+    <TextView
+            android:id="@+id/automatic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_alignStart="@id/doorcontrol"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="287dp"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:letterSpacing="-0.05"
+            android:text="@string/automatic"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="54sp"/>
+
+    <TextView
+            android:id="@+id/doorcontrol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="349dp"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:text="@string/door_control"
+            android:textAllCaps="true"
+            android:textColor="@color/autoRed"
+            android:textSize="40sp"/>
+
+
+
+    <Button
+            android:id="@+id/student_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="67dp"
+            android:paddingRight="67dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@drawable/studentbutton"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:text="@string/s_login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:layout_marginTop="485dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:foreground="@drawable/ripple"/>
+
+
+    <Button
+            android:id="@+id/admin_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="75dp"
+            android:paddingRight="75dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@drawable/studentbutton"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/airbnbcerealbold"
+            android:text="@string/a_login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:layout_marginTop="555dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:foreground="@drawable/ripple"/>
+
+    <TextView
+            android:text="@string/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/version"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/airbnbcereallight"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_centerHorizontal="true" android:layout_below="@+id/admin_login"/>
+
+    <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/gear"
+            android:id="@+id/gear"
+            android:layout_marginTop="16dp" android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/gear_description"
+            android:alpha="0.7"/>
+
+</RelativeLayout>

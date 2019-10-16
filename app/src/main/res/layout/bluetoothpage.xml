@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+
+        android:background="@color/material_dark">
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Login"
+            android:id="@+id/student_name"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="210dp"
+            app:boxStrokeColor="@color/white"
+            android:layout_centerInParent="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/airbnbcerealbold"
+                android:textSize="20sp" android:id="@+id/name"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+</RelativeLayout>

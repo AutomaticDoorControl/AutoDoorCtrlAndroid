@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AutoDoorCtrlAndroid</string>
+    <string name="a_login">Admin Login</string>
+    <string name="s_login">Student Login</string>
+    <string name="username">RCS ID</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="gear_description">Access settings panel</string>
+    <string name="version">ADC v.1</string>
+    <string name="door_control">Door Control</string>
+    <string name="automatic">Automatic</string>
+    <string name="logo">Automatic Door Contorl logo</string>
+    <string name="settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="name">Name</string>
+    <string name="email">RPI Email</string>
+    <string name="msg">Enter a message</string>
+    <string name="send">Send</string>
+    <string name="title_activity_maps">Map</string>
+
+
+</resources>
