@@ -1,6 +1,7 @@
 package com.example.autodoorctrl.autodoorctrlandroid
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.location.Location
 import android.os.Looper
+import android.util.Log
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,14 +27,23 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationRequest
 import okhttp3.Callback
+import android.content.Context
 import okhttp3.OkHttpClient
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothGatt
+import android.content.BroadcastReceiver
+import app.akexorcist.bluetotohspp.library.BluetoothState.REQUEST_ENABLE_BT
 import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import java.io.IOException
-
+import java.util.*
+import kotlin.collections.ArrayList
+//GoogleMap.OnMarkerClickListener
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
     private val updateInterval = (10 * 1000).toLong()
     private val fastInterval: Long = 2000
@@ -44,12 +55,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var lastLocation:LatLng? = null
     private var cameraMoved = false
+    private var bluetoothGatt: BluetoothGatt? = null
+    private val myLoc =LatLng(42.7287362,-73.6736838)
+    private val macAdress ="88:3F:4A:E5:BE:C6"
+    private val MY_UUID = UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb")
+    private val bluetoothAdapter: BluetoothAdapter? by lazy(LazyThreadSafetyMode.NONE) {
+        val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+        bluetoothManager.adapter
+    }
 
+
+    // A service that interacts with the BLE device via the Android BLE API.
+    private lateinit var device:BluetoothDevice
+    private val TAG = "Bluetooth"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         hideNavBar()
-
+        device = bluetoothAdapter!!.getRemoteDevice(macAdress)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -79,6 +102,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
 
         //add this here:
         val list: MutableList<LatLng> = ArrayList()
+
         request.get(url,object: Callback {
             override fun onResponse(call: Call, response: Response) {
                 try {
@@ -87,16 +111,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
                         val item = jsonArray.getJSONObject(i)
                         val latitude = item.getDouble("latitude")
                         val longitude = item.getDouble("longitude")
-                        val name  = item.getString("name")
-                        val tempDoor = LatLng(latitude,longitude)
-                        list+=tempDoor
-                        runOnUiThread{
+                        val name = item.getString("name")
+                        val tempDoor = LatLng(latitude, longitude)
+                        list += tempDoor
+                        runOnUiThread {
                             mMap.addMarker(MarkerOptions().position(tempDoor).title(name).snippet("Click to open or close"))
                         }
                     }
-                    println("Last location is $lastLocation")
                     runOnUiThread{
-                        println("Last location is $lastLocation")
+                        mMap.addMarker(MarkerOptions().position(myLoc).title("ADC").snippet("Click to open or close"))
                         if(lastLocation ==  null)
                         {
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(list[0]))
@@ -117,13 +140,35 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
             }
         }
         )
-
+//        mMap.setOnMarkerClickListener(this)
     }
     override fun onStart() {
         super.onStart()
+        if (bluetoothAdapter?.isEnabled == false) {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+        }
         startLocationUpdates()
     }
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode ==  Activity.RESULT_OK)
+        {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+        else
+        {
+            runOnUiThread{
+                Toast.makeText(this,"Bluetooth is required to use this app",Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+//    override fun onMarkerClick(p0: Marker?): Boolean
+//    {
+//        println("Check1")
+//        bluetoothGatt = device.connectGatt(this, false,BluetoothLeService(bluetoothGatt,applicationContext).gattCallback)
+//        println("Bluetooth gat is $bluetoothGatt")
+//        return true
+//    }
     override fun onInfoWindowClick(p0: Marker?) {
         Toast.makeText(this, "Info window clicked",
             Toast.LENGTH_SHORT).show()
@@ -171,10 +216,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         if(!cameraMoved)
         {
             lastLocation=myLocation
+            println("Last location is $lastLocation")
             mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation))
             cameraMoved=true
         }
+        else
+        {
+            lastLocation=myLocation
+        }
     }
+
 
     private fun checkPermission() : Boolean {
         return if (ContextCompat.checkSelfPermission(this , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {

@@ -11,10 +11,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import okhttp3.OkHttpClient
 
 class  SendFeedback : AppCompatActivity() {
-
-
+    private var client = OkHttpClient()
+    private var request = OkHttpRequest(client)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.feedback)
@@ -33,14 +34,15 @@ class  SendFeedback : AppCompatActivity() {
 
             val autodoor = "automaticdoorcontrol@gmail.com"
             val email = Intent(Intent.ACTION_SEND)
-            email.putExtra(Intent.EXTRA_EMAIL, arrayOf(autodoor))
-            email.putExtra(Intent.EXTRA_SUBJECT, "Feedback for Automatic Door Control")
-            email.putExtra(Intent.EXTRA_TEXT, msg)
-
-            email.type = "message/rfc822"
-            startActivity(Intent.createChooser(email, "Choose an Email client :"))
-            Log.v("EditText", name.text.toString())
+//            email.putExtra(Intent.EXTRA_EMAIL, arrayOf(autodoor))
+//            email.putExtra(Intent.EXTRA_SUBJECT, "Feedback for Automatic Door Control")
+//            email.putExtra(Intent.EXTRA_TEXT, msg)
+//            email.type = "message/rfc822"
+//
+//            Log.v("EditText", name.text.toString())
+//            Toast.makeText(this@SendFeedback, "Sending email to Automatic Door Control", Toast.LENGTH_SHORT).show()
             Toast.makeText(this@SendFeedback, "Sending email to Automatic Door Control", Toast.LENGTH_SHORT).show()
+
         }
 
     }
