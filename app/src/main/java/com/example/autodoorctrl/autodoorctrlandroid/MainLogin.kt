@@ -22,32 +22,32 @@ class MainLogin : AppCompatActivity() {
     private val opacityClick: AlphaAnimation = AlphaAnimation(0.8f, 0.4f)
     private var client = OkHttpClient()
     private var request = OkHttpRequest(client)
-    private val  url = "http://69.55.54.25:80/api/login"
+    private val  url = "https://rpiadc.com/api/login"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_student_login)
+        setContentView(R.layout.login)
         hideNavBar()
         val settingsIcon = findViewById<ImageView>(R.id.gear)
         settingsIcon.setOnClickListener {
             it.startAnimation(opacityClick)
             goToSettings()
         }
-        val rcsText = findViewById<EditText>(R.id.RCS_ID)
-        val loginBtn = findViewById<Button>(R.id.main_login)
+        val rcsText = findViewById<EditText>(R.id.et_rcs_id)
+        val passwordText = findViewById<EditText>(R.id.et_password)
+        val loginBtn = findViewById<Button>(R.id.btn_login)
         loginBtn.setOnClickListener {
             val rcs = rcsText.text.toString()
-            val map: HashMap<String, String> = hashMapOf("RCSid" to rcs)
+            val password = passwordText.text.toString()
+            val map: HashMap<String, String> = hashMapOf("rcsid" to rcs, "password" to password)
             loginUser(map)
         }
     }
 
     private fun loginUser(map:HashMap<String,String>) {
         request.post(url,map,object: Callback {
-            override fun onResponse(call: Call, response: Response)
-            {
-                try
-                {
+            override fun onResponse(call: Call, response: Response) {
+                try {
                     val jsonArray = JSONObject(response.body?.string())
                     println(jsonArray)
                     if(jsonArray.getString("SESSIONID").compareTo("") != 0)

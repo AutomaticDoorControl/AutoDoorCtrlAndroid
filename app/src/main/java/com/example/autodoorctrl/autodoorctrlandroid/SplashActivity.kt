@@ -10,7 +10,7 @@ class SplashActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         hideNavBar()
 
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, MainLogin::class.java)
         startActivity(intent)
         Handler().postDelayed({ finish() }, 900)
     }
