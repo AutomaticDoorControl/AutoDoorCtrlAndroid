@@ -86,6 +86,7 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="textPassword"
                 android:fontFamily="@font/airbnbcerealbold"
                 android:textSize="20sp" />
 
