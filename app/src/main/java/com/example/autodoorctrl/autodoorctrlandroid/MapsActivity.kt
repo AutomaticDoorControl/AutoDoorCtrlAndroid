@@ -49,9 +49,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     private val fastInterval: Long = 2000
     private var mLocationRequest: LocationRequest? = null
     private lateinit var mMap: GoogleMap
-    private val  url = "http://69.55.54.25:80/api/get-doors"
-    private var client = OkHttpClient()
-    private var request = OkHttpRequest(client)
+    private val  endpoint = "get-doors"
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var lastLocation:LatLng? = null
     private var cameraMoved = false
@@ -103,7 +101,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
         //add this here:
         val list: MutableList<LatLng> = ArrayList()
 
-        request.get(url,object: Callback {
+        OkHttpRequest.get(endpoint, object: Callback {
             override fun onResponse(call: Call, response: Response) {
                 try {
                     val jsonArray = JSONArray(response.body?.string())

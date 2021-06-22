@@ -20,9 +20,7 @@ import org.json.JSONObject
 
 class MainLogin : AppCompatActivity() {
     private val opacityClick: AlphaAnimation = AlphaAnimation(0.8f, 0.4f)
-    private var client = OkHttpClient()
-    private var request = OkHttpRequest(client)
-    private val  url = "https://rpiadc.com/api/login"
+    private val  endpoint = "login"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +43,7 @@ class MainLogin : AppCompatActivity() {
     }
 
     private fun loginUser(map:HashMap<String,String>) {
-        request.post(url,map,object: Callback {
+        OkHttpRequest.post(endpoint, map, object: Callback {
             override fun onResponse(call: Call, response: Response) {
                 try {
                     val jsonArray = JSONObject(response.body?.string())
