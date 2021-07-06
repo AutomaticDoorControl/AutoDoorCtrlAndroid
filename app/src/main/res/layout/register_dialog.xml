@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@color/material_dark">
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Login"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/username">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_rcs_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/airbnbcerealbold"
+                android:textSize="20sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>
