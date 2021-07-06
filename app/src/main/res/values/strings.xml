@@ -17,6 +17,8 @@
     <string name="msg">Enter a message</string>
     <string name="send">Send</string>
     <string name="title_activity_maps">Map</string>
+    <string name="register_text">Don\'t have an account?</string>
+    <string name="register"><u>Register</u></string>
 
 
 </resources>

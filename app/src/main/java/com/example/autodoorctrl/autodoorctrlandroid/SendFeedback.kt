@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import okhttp3.OkHttpClient
 
 class  SendFeedback : AppCompatActivity() {
-    private var client = OkHttpClient()
-    private var request = OkHttpRequest(client)
+//    private var client = OkHttpClient()
+//    private var request = OkHttpRequest(client)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.feedback)
