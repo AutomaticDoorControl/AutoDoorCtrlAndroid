@@ -1,20 +1,19 @@
 package com.example.autodoorctrl.autodoorctrlandroid
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AlphaAnimation
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONException
-import android.widget.Button
 import java.io.*
 import okhttp3.OkHttpClient
 import okhttp3.Callback
 import okhttp3.Response
 import okhttp3.Call
-import android.widget.EditText
 import org.json.JSONObject
 
 
@@ -39,6 +38,23 @@ class MainLogin : AppCompatActivity() {
             val password = passwordText.text.toString()
             val map: HashMap<String, String> = hashMapOf("rcsid" to rcs, "password" to password)
             loginUser(map)
+        }
+
+        val register = findViewById<TextView>(R.id.txt_register)
+        register.setOnClickListener{
+            val builder = AlertDialog.Builder(this)
+            builder.apply {
+                setPositiveButton(R.string.submit) { dialog, id ->
+                    println("submit")
+                }
+                setNegativeButton(R.string.cancel) { dialog, id ->
+                    println("cancel")
+                }
+            }
+            val dialog = builder.setTitle(R.string.register_title)
+                .setMessage("hi")
+                .create()
+            dialog.show()
         }
     }
 
