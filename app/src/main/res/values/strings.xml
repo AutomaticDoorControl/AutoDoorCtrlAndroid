@@ -5,6 +5,7 @@
     <string name="username">RCS ID</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="register_request">Submit Request</string>
     <string name="gear_description">Access settings panel</string>
     <string name="version">ADC v.1</string>
     <string name="door_control">Door Control</string>
@@ -19,6 +20,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="register_text">Don\'t have an account?</string>
     <string name="register"><u>Register</u></string>
+    <string name="back_to_login">Back to login</string>
     <string name="register_title">Register an Account</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
