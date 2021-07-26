@@ -42,17 +42,8 @@ class MainLogin : AppCompatActivity() {
 
         val register = findViewById<TextView>(R.id.txt_register)
         register.setOnClickListener{
-            val builder = AlertDialog.Builder(this)
-            val inflater = this.layoutInflater
-            builder.setView(inflater.inflate(R.layout.register_dialog, null)).setPositiveButton(R.string.submit) { dialog, id ->
-                println("submit")
-            }.setNegativeButton(R.string.cancel) { dialog, id ->
-                println("cancel")
-            }
-            val dialog = builder.setTitle(R.string.register_title)
-                .setMessage("hi")
-                .create()
-            dialog.show()
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 

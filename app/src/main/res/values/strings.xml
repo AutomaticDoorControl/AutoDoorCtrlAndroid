@@ -20,7 +20,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="register_text">Don\'t have an account?</string>
     <string name="register"><u>Register</u></string>
-    <string name="back_to_login">Back to login</string>
+    <string name="back_to_login"><u>Back to login</u></string>
     <string name="register_title">Register an Account</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
