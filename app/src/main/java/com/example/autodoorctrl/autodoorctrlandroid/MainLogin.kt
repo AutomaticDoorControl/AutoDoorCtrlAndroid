@@ -36,15 +36,18 @@ class MainLogin : AppCompatActivity() {
     object: BiometricPrompt.AuthenticationCallback(){
         override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) {
             super.onAuthenticationError(errorCode, errString)
-            println("AUTH ERROR")
+            Toast.makeText(this@MainLogin, getString(R.string.error), Toast.LENGTH_SHORT).show()
         }
 
         override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult?) {
             super.onAuthenticationSucceeded(result)
             println("AUTH SUCCEEDED")
+            //TODO get login information from shared prefs
+            sendToMap("")
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
@@ -72,8 +75,26 @@ class MainLogin : AppCompatActivity() {
 
         val fingerprint = findViewById<ImageView>(R.id.img_fingerprint)
         fingerprint.setOnClickListener{
-            
+            if(!checkBiometricSupport()) return@setOnClickListener
+            val prompt = BiometricPrompt.Builder(this)
+                .setTitle("Log in with your fingerprint")
+                .setNegativeButton("Cancel", this.mainExecutor, DialogInterface.OnClickListener { dialog, which ->
+                    println("AUTH CANCELLED")
+                })
+                .build()
+
+            prompt.authenticate(getCancellationSignal(), mainExecutor, authCallback)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        hideNavBar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideNavBar()
     }
 
     private fun loginUser(map:HashMap<String,String>) {

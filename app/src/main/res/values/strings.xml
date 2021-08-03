@@ -26,6 +26,7 @@
     <string name="cancel">Cancel</string>
     <string name="enable_fingerprint">Fingerprint authentication has not been enabled. Please enable it in settings</string>
     <string name="enable_fingerprint_permission">Please enable permission for fingerprint authentication to continue</string>
+    <string name="error">An error has occurred</string>
 
 
 </resources>
