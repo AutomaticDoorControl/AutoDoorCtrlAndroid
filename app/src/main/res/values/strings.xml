@@ -24,6 +24,8 @@
     <string name="register_title">Register an Account</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
+    <string name="enable_fingerprint">Fingerprint authentication has not been enabled. Please enable it in settings</string>
+    <string name="enable_fingerprint_permission">Please enable permission for fingerprint authentication to continue</string>
 
 
 </resources>

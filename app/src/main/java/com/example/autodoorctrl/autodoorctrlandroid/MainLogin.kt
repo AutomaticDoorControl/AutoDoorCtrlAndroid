@@ -1,13 +1,21 @@
 package com.example.autodoorctrl.autodoorctrlandroid
 
+import android.app.KeyguardManager
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.hardware.biometrics.BiometricPrompt
+import android.os.Build
 import android.os.Bundle
+import android.os.CancellationSignal
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import org.json.JSONException
 import java.io.*
 import okhttp3.OkHttpClient
@@ -20,6 +28,22 @@ import org.json.JSONObject
 class MainLogin : AppCompatActivity() {
     private val opacityClick: AlphaAnimation = AlphaAnimation(0.8f, 0.4f)
     private val  endpoint = "login"
+
+    //for biometric login
+    private lateinit var cancellationSignal: CancellationSignal
+    private val authCallback: BiometricPrompt.AuthenticationCallback
+    get() = @RequiresApi(Build.VERSION_CODES.P)
+    object: BiometricPrompt.AuthenticationCallback(){
+        override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) {
+            super.onAuthenticationError(errorCode, errString)
+            println("AUTH ERROR")
+        }
+
+        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult?) {
+            super.onAuthenticationSucceeded(result)
+            println("AUTH SUCCEEDED")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +117,30 @@ class MainLogin : AppCompatActivity() {
         val maps = Intent(this, MapsActivity::class.java)
         maps.putExtra("RCSid", RCSid)
        startActivity(maps)
+    }
+
+    private fun getCancellationSignal(): CancellationSignal{
+        cancellationSignal = CancellationSignal()
+        cancellationSignal.setOnCancelListener {
+            println("AUTH CANCELLED")
+        }
+        return cancellationSignal
+    }
+
+    private fun checkBiometricSupport(): Boolean{
+        val keyGuardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+
+        if(!keyGuardManager.isKeyguardSecure){
+            Toast.makeText(this, getString(R.string.enable_fingerprint), Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.USE_BIOMETRIC) != PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(this, getString(R.string.enable_fingerprint_permission), Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return if(packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) true else true
     }
 }
 
