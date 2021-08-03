@@ -69,6 +69,11 @@ class MainLogin : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+        val fingerprint = findViewById<ImageView>(R.id.img_fingerprint)
+        fingerprint.setOnClickListener{
+            
+        }
     }
 
     private fun loginUser(map:HashMap<String,String>) {
