@@ -30,6 +30,7 @@
     <string name="shared_prefs_user_rcsid">userRCSID</string>
     <string name="shared_prefs_user_session_id">userSessionID</string>
     <string name="shared_prefs_user_admin">userAdmin</string>
+    <string name="biometric_login_failed_no_user_info">Please log in at least once before using fingerprint login</string>
 
 
 </resources>

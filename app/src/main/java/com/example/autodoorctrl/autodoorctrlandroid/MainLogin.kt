@@ -44,8 +44,11 @@ class MainLogin : AppCompatActivity() {
         override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult?) {
             super.onAuthenticationSucceeded(result)
             println("AUTH SUCCEEDED")
-            //TODO get login information from shared prefs
-            sendToMap("")
+            prefs.getString(getString(R.string.shared_prefs_user_rcsid), null)?.let {
+                sendToMap(it)
+                return@let
+            }
+            Toast.makeText(this@MainLogin, getString(R.string.biometric_login_failed_no_user_info), Toast.LENGTH_SHORT).show()
         }
     }
 
