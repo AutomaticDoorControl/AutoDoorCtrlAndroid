@@ -4,6 +4,7 @@ import android.app.KeyguardManager
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.hardware.biometrics.BiometricPrompt
 import android.os.Build
@@ -28,6 +29,7 @@ import org.json.JSONObject
 class MainLogin : AppCompatActivity() {
     private val opacityClick: AlphaAnimation = AlphaAnimation(0.8f, 0.4f)
     private val  endpoint = "login"
+    private lateinit var prefs: SharedPreferences
 
     //for biometric login
     private lateinit var cancellationSignal: CancellationSignal
@@ -52,6 +54,14 @@ class MainLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
         hideNavBar()
+
+        prefs = this.getPreferences(Context.MODE_PRIVATE)
+
+        prefs.getString(getString(R.string.shared_prefs_user_rcsid), null)?.let {
+            sendToMap(it)
+        }
+
+
         val settingsIcon = findViewById<ImageView>(R.id.gear)
         settingsIcon.setOnClickListener {
             it.startAnimation(opacityClick)
@@ -103,9 +113,15 @@ class MainLogin : AppCompatActivity() {
                 try {
                     val jsonArray = JSONObject(response.body?.string())
                     println(jsonArray)
-                    if(jsonArray.getString("SESSIONID").compareTo("") != 0)
-                        sendToMap(map["RCSid"])
-                    else {
+                    if(jsonArray.getString("SESSIONID").compareTo("") != 0) {
+                        with(prefs.edit()){
+                            putString(getString(R.string.shared_prefs_user_rcsid), map["rcsid"])
+                            putString(getString(R.string.shared_prefs_user_session_id), jsonArray.getString("SESSIONID"))
+                            putInt(getString(R.string.shared_prefs_user_admin),jsonArray.getInt("admin"))
+                            apply()
+                        }
+                        sendToMap(map["rcsid"])
+                    }else {
                         runOnUiThread{
                             Toast.makeText(applicationContext, "User does not exist", Toast.LENGTH_SHORT)
                                 .show()
