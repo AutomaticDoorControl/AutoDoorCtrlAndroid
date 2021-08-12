@@ -5,6 +5,7 @@
     <string name="username">RCS ID</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="register_request">Submit Request</string>
     <string name="gear_description">Access settings panel</string>
     <string name="version">ADC v.1</string>
     <string name="door_control">Door Control</string>
@@ -17,6 +18,19 @@
     <string name="msg">Enter a message</string>
     <string name="send">Send</string>
     <string name="title_activity_maps">Map</string>
+    <string name="register_text">Don\'t have an account?</string>
+    <string name="register"><u>Register</u></string>
+    <string name="back_to_login"><u>Back to login</u></string>
+    <string name="register_title">Register an Account</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="enable_fingerprint">Fingerprint authentication has not been enabled. Please enable it in settings</string>
+    <string name="enable_fingerprint_permission">Please enable permission for fingerprint authentication to continue</string>
+    <string name="error">An error has occurred</string>
+    <string name="shared_prefs_user_rcsid">userRCSID</string>
+    <string name="shared_prefs_user_session_id">userSessionID</string>
+    <string name="shared_prefs_user_admin">userAdmin</string>
+    <string name="biometric_login_failed_no_user_info">Please log in at least once before using fingerprint login</string>
 
 
 </resources>

@@ -7,24 +7,26 @@ import org.json.JSONObject
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 
+object OkHttpRequest{
+    private val client = OkHttpClient()
 
+    private const val BASE_URL = "https://rpiadc.com/api/"
 
-class OkHttpRequest(private var client: OkHttpClient) {
-    fun get(url: String, callback: Callback): Call {
+    fun get(endpoint: String, callback: Callback): Call {
         val request = Request.Builder()
-            .url(url)
+            .url("${BASE_URL}$endpoint")
             .build()
 
         val call = client.newCall(request)
         call.enqueue(callback)
         return call
     }
-    fun post(url: String, parameters: HashMap<String, String>, callback: Callback): Call {
+    fun post(endpoint: String, parameters: HashMap<String, String>, callback: Callback): Call {
         val parameter = JSONObject(parameters)
         val mediaTypeJson = "application/json; charset=utf-8".toMediaType()
         val requestBody = parameter.toString().toRequestBody(mediaTypeJson)
         val request = Request.Builder()
-            .url(url)
+            .url("${BASE_URL}$endpoint")
             .post(requestBody)
             .addHeader("content-type", "application/json; charset=utf-8")
             .build()

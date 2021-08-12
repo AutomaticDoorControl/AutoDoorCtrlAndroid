@@ -16,19 +16,19 @@ class  Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
 
-        val adminBtn = findViewById<Button>(R.id.admin_login)
-        val studentBtn = findViewById<Button>(R.id.student_login)
+//        val adminBtn = findViewById<Button>(R.id.admin_login)
+//        val studentBtn = findViewById<Button>(R.id.student_login)
         val settingsIcon = findViewById<ImageView>(R.id.gear)
 
         hideNavBar()
-        adminBtn.setOnClickListener {
-//            it.startAnimation(animScale)
-            Handler().postDelayed({ sendToLogin() }, 100)
-        }
-        studentBtn.setOnClickListener {
-//            it.startAnimation(animScale)
-            Handler().postDelayed({ sendToLogin() }, 100)
-        }
+//        adminBtn.setOnClickListener {
+////            it.startAnimation(animScale)
+//            Handler().postDelayed({ sendToLogin() }, 100)
+//        }
+//        studentBtn.setOnClickListener {
+////            it.startAnimation(animScale)
+//            Handler().postDelayed({ sendToLogin() }, 100)
+//        }
 
         settingsIcon.setOnClickListener {
             it.startAnimation(opacityClick)
