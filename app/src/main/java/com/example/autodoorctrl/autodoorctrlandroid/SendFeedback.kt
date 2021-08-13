@@ -19,7 +19,7 @@ class  SendFeedback : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.feedback)
-        hideNavBar()
+        supportActionBar?.hide()
 
 
         // get reference to button
@@ -45,12 +45,6 @@ class  SendFeedback : AppCompatActivity() {
 
         }
 
-    }
-    fun hideNavBar() {
-        this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
 
 }
