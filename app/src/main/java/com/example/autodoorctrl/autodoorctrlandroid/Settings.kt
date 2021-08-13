@@ -17,7 +17,7 @@ class Settings : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hideNavBar()
+        supportActionBar?.hide()
         if (fragmentManager.findFragmentById(android.R.id.content) == null) {
             fragmentManager.beginTransaction()
                 .add(android.R.id.content, SettingsFragment()).commit()
@@ -30,12 +30,5 @@ class Settings : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             addPreferencesFromResource(R.xml.settings_layout)
         }
-    }
-
-    private fun hideNavBar() {
-        this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
 }

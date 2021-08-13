@@ -56,9 +56,11 @@ class MainLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        hideNavBar()
+        supportActionBar?.hide()
 
         prefs = this.getPreferences(Context.MODE_PRIVATE)
+
+        prefs.edit().clear().apply()
 
         prefs.getString(getString(R.string.shared_prefs_user_rcsid), null)?.let {
             sendToMap(it)
@@ -100,16 +102,6 @@ class MainLogin : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        hideNavBar()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        hideNavBar()
-    }
-
     private fun loginUser(map:HashMap<String,String>) {
         OkHttpRequest.post(endpoint, map, object: Callback {
             override fun onResponse(call: Call, response: Response) {
@@ -145,13 +137,6 @@ class MainLogin : AppCompatActivity() {
             }
         })
     }
-    private fun hideNavBar() {
-        this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-    }
-
 
     private fun goToSettings() {
         val intent = Intent(this@MainLogin, Settings::class.java)

@@ -69,19 +69,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnInfoWi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        hideNavBar()
+        supportActionBar?.hide()
         device = bluetoothAdapter!!.getRemoteDevice(macAdress)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         mapFragment.getMapAsync(this)
-    }
-    private fun hideNavBar() {
-        this.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
     /**
      * Manipulates the map once available.
